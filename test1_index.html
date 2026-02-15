@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Data Model & Advanced DAX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container" id="main-container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="content-card active">
+            <div class="badge">Workshop Series</div>
+            <h1>Data Model & <br><span class="gradient-text">Advanced DAX</span></h1>
+            <p class="description">ทดสอบทักษะการออกแบบ Data Model และการเขียนสูตร DAX ระดับสูง (10 ข้อ)</p>
+
+            <div class="input-group">
+                <div class="field">
+                    <label for="username">ชื่อ-นามสนุก (ภาษาไทย)</label>
+                    <input type="text" id="username" placeholder="สมชาย ใจดี" required>
+                </div>
+                <div class="field">
+                    <label for="email">อีเมลเพื่อรับผลคะแนน</label>
+                    <input type="email" id="email" placeholder="example@email.com" required>
+                </div>
+            </div>
+
+            <button id="start-btn" class="primary-btn">
+                <span>เริ่มทำแบบทดสอบ</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="content-card">
+            <div class="quiz-header">
+                <span id="current-question-num">ข้อที่ 1/10</span>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div id="question-container">
+                <h2 id="question-text">คำถามจะปรากฏที่นี่</h2>
+                <div id="options-container" class="options-grid">
+                    <!-- Options will be injected here -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="next-btn" class="primary-btn disabled" disabled>
+                    <span>ถัดไป</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Popup -->
+        <div id="result-overlay" class="overlay">
+            <div class="result-card">
+                <div id="result-icon" class="success-icon">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="5" />
+                        <path id="icon-path" d="M30 50L45 65L70 35" fill="none" stroke="currentColor" stroke-width="8"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h2 id="result-title">สรุปผลคะแนน</h2>
+                <div class="user-info">
+                    <p id="result-name">ชื่อ: -</p>
+                </div>
+                <div class="score-container">
+                    <span id="score-value">0</span>
+                    <span class="score-total">/ 10</span>
+                </div>
+                <p id="result-desc" class="status-msg">เก่งมาก! เราได้ส่งคำตอบและคำอธิบายไปยังอีเมลของคุณแล้ว</p>
+                <button id="result-action-btn" onclick="location.reload()" class="primary-btn">ทำใหม่อีกครั้ง</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

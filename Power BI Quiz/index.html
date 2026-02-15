@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบหลักสูตร Power BI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Registration Section -->
+        <div id="registration-section" class="card fade-in">
+            <h1>แบบทดสอบหลักสูตร Power BI</h1>
+            <p class="subtitle">กรุณากรอกข้อมูลเพื่อเริ่มทำแบบทดสอบ (25 ข้อ)</p>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="fullname">ชื่อ-นามสกุล</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="ตัวอย่าง: สมชาย ใจดี" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">อีเมล</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                </div>
+                <button type="submit" class="btn-primary">เริ่มทำแบบทดสอบ</button>
+            </form>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="card hidden">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="quiz-meta">
+                    <span id="question-counter">ข้อที่ 1/25</span>
+                    <span id="timer">00:00</span>
+                </div>
+            </div>
+            <div id="question-container">
+                <!-- Question will be injected here -->
+            </div>
+            <div class="quiz-footer">
+                <button id="next-btn" class="btn-primary hidden">ถัดไป</button>
+            </div>
+        </div>
+
+        <!-- Result Popup -->
+        <div id="result-modal" class="modal hidden">
+            <div class="modal-content">
+                <div id="result-icon"></div>
+                <h2 id="result-title">สรุปคะแนน</h2>
+                <div class="score-display">
+                    <span id="final-score">0</span> / 25
+                </div>
+                <p id="result-message"></p>
+                <div class="modal-actions">
+                    <button id="retry-btn" class="btn-secondary hidden">ทำแบบทดสอบใหม่</button>
+                    <button id="accept-btn" class="btn-primary hidden">ยอมรับและส่งผลคะแนน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>กำลังส่งข้อมูล...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

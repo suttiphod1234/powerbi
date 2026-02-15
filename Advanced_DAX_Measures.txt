@@ -1,0 +1,45 @@
+
+==============================
+ADVANCED DAX – COMPLETE MEASURES
+==============================
+
+Total Sales =
+SUMX(Sales, Sales[Quantity] * Sales[UnitPrice])
+
+Total Profit =
+[Total Sales] * 0.3
+
+Sales 2024 =
+CALCULATE([Total Sales], 'Date'[Year] = 2024)
+
+YTD Sales =
+TOTALYTD([Total Sales], 'Date'[Date])
+
+Sales LY =
+CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date]))
+
+YoY Growth % =
+DIVIDE([Total Sales] - [Sales LY], [Sales LY])
+
+Rolling 6M =
+CALCULATE(
+    [Total Sales],
+    DATESINPERIOD(
+        'Date'[Date],
+        MAX('Date'[Date]),
+        -6,
+        MONTH
+    )
+)
+
+% of Total =
+DIVIDE(
+    [Total Sales],
+    CALCULATE([Total Sales], ALL(Product))
+)
+
+Ranking =
+RANKX(
+    ALL(Product[Product Name]),
+    [Total Sales]
+)
