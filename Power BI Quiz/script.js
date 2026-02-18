@@ -150,7 +150,7 @@ const acceptBtn = document.getElementById('accept-btn');
 const loadingOverlay = document.getElementById('loading-overlay');
 
 // Script URL for Google Apps Script (User needs to replace this)
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4HTi8ViHybNjskhig-WIMmN1KT2obeFDA4hHU7ERwkahCUHKAHZCklkjH0eGj/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQL5KSTQJRtW0vzXx4cdJtvkXEtM7jbhM8wFCkJWmwimXqFhUaxGpYG3fsC10fEuo/exec';
 
 // Handle Registration
 regForm.addEventListener('submit', (e) => {
@@ -242,10 +242,36 @@ acceptBtn.addEventListener('click', () => {
     submitResults();
 });
 
+// DOM Elements for Evaluation
+const evaluationSection = document.getElementById('evaluation-section');
+const evaluationForm = document.getElementById('evaluation-form');
+const successModal = document.getElementById('success-modal');
+
+// Star Rating Interaction
+document.querySelectorAll('.star-rating').forEach(container => {
+    const stars = container.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const val = star.getAttribute('data-value');
+            container.setAttribute('data-rating', val);
+
+            // UI Update
+            stars.forEach(s => {
+                if (parseInt(s.getAttribute('data-value')) <= parseInt(val)) {
+                    s.classList.add('selected');
+                } else {
+                    s.classList.remove('selected');
+                }
+            });
+        });
+    });
+});
+
 function submitResults() {
     loadingOverlay.classList.remove('hidden');
 
     const payload = {
+        type: 'quiz',
         fullname: userData.fullname,
         email: userData.email,
         score: score,
@@ -256,7 +282,7 @@ function submitResults() {
 
     fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // For Google Apps Script
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -264,12 +290,98 @@ function submitResults() {
     })
         .then(() => {
             loadingOverlay.classList.add('hidden');
-            alert('ส่งผลคะแนนเรียบร้อยแล้ว! ข้อมูลของคุณถูกส่งไปยังอีเมลและบันทึกในระบบ');
-            window.location.reload();
+            resultModal.classList.add('hidden');
+            evaluationSection.classList.remove('hidden');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(err => {
             loadingOverlay.classList.add('hidden');
             console.error('Error:', err);
-            alert('เกิดข้อผิดพลาดในการส่งข้อมูล แต่คุณสอบผ่านแล้ว!');
+            alert('เกิดข้อผิดพลาดในการส่งข้อมูล แต่เราได้บันทึกคะแนนของคุณแล้ว กรุณาประเมินหลักสูตรต่อได้เลยครับ');
+            resultModal.classList.add('hidden');
+            evaluationSection.classList.remove('hidden');
         });
 }
+
+// Handle Evaluation Submission
+evaluationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Check if all star ratings are filled
+    const ratings = {};
+    let allRated = true;
+    document.querySelectorAll('.star-rating').forEach(container => {
+        const name = container.getAttribute('data-name');
+        const rating = container.getAttribute('data-rating');
+        if (!rating) {
+            allRated = false;
+        }
+        ratings[name] = rating;
+    });
+
+    if (!allRated) {
+        alert('กรุณาให้คะแนนความพึงพอใจให้ครบทุกหัวข้อ (รูปดาว)');
+        return;
+    }
+
+    // Get checked dates
+    const dates = [];
+    document.querySelectorAll('input[name="training_date"]:checked').forEach(cb => {
+        dates.push(cb.value);
+    });
+
+    if (dates.length === 0) {
+        alert('กรุณาเลือกวันที่อบรมอย่างน้อย 1 วัน');
+        return;
+    }
+
+    loadingOverlay.classList.remove('hidden');
+
+    const formData = new FormData(evaluationForm);
+    const payload = {
+        type: 'survey',
+        fullname: userData.fullname,
+        email: userData.email,
+        training_dates: dates.join(', '),
+        age: formData.get('age'),
+        gender: formData.get('gender'),
+        department: formData.get('department'),
+        q1_1: ratings['q1_1'],
+        q1_2: ratings['q1_2'],
+        q1_3: ratings['q1_3'],
+        q1_4: ratings['q1_4'],
+        q2_1: ratings['q2_1'],
+        q2_2: ratings['q2_2'],
+        q2_3: ratings['q2_3'],
+        q3_1: ratings['q3_1'],
+        q3_2: ratings['q3_2'],
+        q3_3: ratings['q3_3'],
+        feedback_positive: formData.get('feedback_positive'),
+        feedback_improve: formData.get('feedback_improve'),
+        feedback_other: formData.get('feedback_other'),
+        timestamp: new Date().toISOString()
+    };
+
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(() => {
+            loadingOverlay.classList.add('hidden');
+            evaluationSection.classList.add('hidden');
+            successModal.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(err => {
+            loadingOverlay.classList.add('hidden');
+            console.error('Error:', err);
+            alert('เกิดข้อผิดพลาดในการส่งแบบสำรวจ แต่เราได้รับข้อมูลเบื้องต้นของคุณแล้ว ขอบคุณครับ');
+            evaluationSection.classList.add('hidden');
+            successModal.classList.remove('hidden');
+        });
+});

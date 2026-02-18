@@ -66,6 +66,203 @@
                 </div>
             </div>
         </div>
+
+        <!-- Evaluation Section -->
+        <div id="evaluation-section" class="card hidden fade-in">
+            <h1>แบบประเมินหลักสูตรอบรม</h1>
+            <p class="subtitle">หลักสูตร: Advanced Power BI</p>
+
+            <form id="evaluation-form">
+                <div class="form-group">
+                    <label>วันที่อบรม (เลือกได้มากกว่า 1 วัน)</label>
+                    <div class="date-selection">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="training_date" value="Day 1">
+                            <span class="checkmark"></span> วันที่ 1
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="training_date" value="Day 2">
+                            <span class="checkmark"></span> วันที่ 2
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="training_date" value="Day 3">
+                            <span class="checkmark"></span> วันที่ 3
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">เลือกอายุ</label>
+                        <select id="age" name="age" required>
+                            <option value="" disabled selected>เลือกช่วงอายุ</option>
+                            <option value="Under 25">ต่ำกว่า 25 ปี</option>
+                            <option value="25-35">25-35 ปี</option>
+                            <option value="36-45">36-45 ปี</option>
+                            <option value="Over 45">มากกว่า 45 ปี</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">เลือกเพศ</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>เลือกเพศ</option>
+                            <option value="Male">ชาย</option>
+                            <option value="Female">หญิง</option>
+                            <option value="Other">อื่นๆ / ไม่ระบุ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">สายงานปัจจุบัน (โปรดระบุ)</label>
+                    <input type="text" id="department" name="department" placeholder="เช่น บัญชี, ไอที, การตลาด"
+                        required>
+                </div>
+
+                <hr>
+                <h3>ด้านที่ 1: เนื้อหาและความเหมาะสมของหลักสูตร</h3>
+                <div class="rating-item">
+                    <p>1. เนื้อหาครอบคลุมและตรงตามวัตถุประสงค์ของหลักสูตร</p>
+                    <div class="star-rating" data-name="q1_1">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>2. ความเหมาะสมของเนื้อหา Advanced DAX และ Time Intelligence</p>
+                    <div class="star-rating" data-name="q1_2">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>3. เนื้อหาการออกแบบ Data Model และ Dashboard สามารถนำไปใช้งานจริง</p>
+                    <div class="star-rating" data-name="q1_3">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>4. Workshop (Automotive Case Study) ช่วยให้เข้าใจการประยุกต์ใช้งานจริงมากขึ้น</p>
+                    <div class="star-rating" data-name="q1_4">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+
+                <h3>ด้านที่ 2: วิทยากรและการถ่ายทอดความรู้</h3>
+                <div class="rating-item">
+                    <p>1. วิทยากรมีความเชี่ยวชาญและตอบคำถามได้ชัดเจน</p>
+                    <div class="star-rating" data-name="q2_1">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>2. วิธีการอธิบายและยกตัวอย่างเข้าใจง่าย</p>
+                    <div class="star-rating" data-name="q2_2">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>3. การบริหารเวลาและลำดับการสอนเหมาะสม</p>
+                    <div class="star-rating" data-name="q2_3">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+
+                <h3>ด้านที่ 3: การจัดการอบรมและประโยชน์ที่ได้รับ</h3>
+                <div class="rating-item">
+                    <p>1. เอกสาร/ไฟล์ประกอบการอบรมมีความครบถ้วนและใช้งานได้จริง</p>
+                    <div class="star-rating" data-name="q3_1">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>2. การจัดเตรียมสถานที่ อุปกรณ์ และระบบมีความพร้อม</p>
+                    <div class="star-rating" data-name="q3_2">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+                <div class="rating-item">
+                    <p>3. โดยภาพรวม ท่านสามารถนำความรู้จากหลักสูตรไปพัฒนางานได้จริง</p>
+                    <div class="star-rating" data-name="q3_3">
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="1">★</span>
+                    </div>
+                </div>
+
+                <hr>
+                <h3>คำถามปลายเปิด</h3>
+                <div class="form-group">
+                    <label for="feedback_positive">สิ่งที่ท่านประทับใจมากที่สุดในหลักสูตรนี้</label>
+                    <textarea id="feedback_positive" name="feedback_positive" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="feedback_improve">หัวข้อที่ต้องการให้เพิ่มเติมหรือพัฒนา</label>
+                    <textarea id="feedback_improve" name="feedback_improve" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="feedback_other">ข้อเสนอแนะเพิ่มเติม</label>
+                    <textarea id="feedback_other" name="feedback_other" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">ส่งแบบประเมิน</button>
+            </form>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="success-icon">✨</div>
+                <h2>ขอบคุณสำหรับข้อมูล</h2>
+                <p>เราได้รับข้อมูลการประเมินของคุณแล้ว</p>
+                <div class="line-group">
+                    <p>เข้าร่วมกลุ่มเรียนรู้ Power BI</p>
+                    <a href="https://line.me/R/ti/g/KKpTktdJH2" target="_blank" class="btn-line">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line"
+                            width="20">
+                        เข้าสู่กลุ่ม Line
+                    </a>
+                </div>
+                <button onclick="window.location.reload()" class="btn-primary">กลับสู่หน้าแรก</button>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Loading Overlay -->
