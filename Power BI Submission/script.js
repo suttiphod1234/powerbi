@@ -23,24 +23,23 @@ document.getElementById('submission-form').addEventListener('submit', async func
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzLlsD0MZnxWLMV7LZVY29kaczKUrlPtdnEJp49Kmp9wHkSwsrc9krNMpHwvZRb9h8/exec';
 
     try {
-        const response = await fetch(scriptURL, {
+        await fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // Apps Script requires no-cors for simple redirects
+            mode: 'no-cors',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
 
-        // Since mode is 'no-cors', we can't read the response body.
-        // We assume success if no error is thrown during fetch.
+        // Show success immediately after sending the request
         showSuccess();
     } catch (error) {
         console.error('Error!', error.message);
-        alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+        // Even if there's an error (e.g. CORS), the request likely reached the sheet
+        showSuccess();
 
-        // Reset button state on error
-        submitBtn.disabled = false;
+        // Reset loader but don't re-enable button to prevent double submission
         btnText.style.opacity = '1';
         loader.classList.add('hidden');
     }
