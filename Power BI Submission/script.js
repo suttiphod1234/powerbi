@@ -43,7 +43,6 @@ document.getElementById('submission-form').addEventListener('submit', async func
 
 function showSuccess() {
     const modal = document.getElementById('success-modal');
+    modal.classList.remove('hidden');
     modal.classList.add('visible');
-
-    // Confetti effect could be added here if needed
 }
