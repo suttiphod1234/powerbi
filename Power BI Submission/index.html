@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ส่งผลงาน Power BI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blob"></div>
+    <div class="container">
+        <div class="card fade-in">
+            <div class="header">
+                <div class="logo">📊</div>
+                <h1>ส่งผลงาน Power BI</h1>
+                <p class="subtitle">กรุณากรอกข้อมูลเพื่อส่งลิงค์ผลงานของท่าน</p>
+            </div>
+
+            <form id="submission-form">
+                <div class="form-group">
+                    <label for="fullname">ชื่อ-นามสกุล</label>
+                    <div class="input-container">
+                        <span class="icon">👤</span>
+                        <input type="text" id="fullname" name="fullname" placeholder="ตัวอย่าง: สมชาย ใจดี" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="position">ตำแหน่งงาน</label>
+                    <div class="input-container">
+                        <span class="icon">💼</span>
+                        <input type="text" id="position" name="position" placeholder="เช่น วิเคราะห์ข้อมูล, บัญชี, ไอที"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="workLink">ลิงค์ผลงาน Power BI</label>
+                    <div class="input-container">
+                        <span class="icon">🔗</span>
+                        <input type="url" id="workLink" name="workLink" placeholder="https://app.powerbi.com/view?r=..."
+                            required>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="btn-primary">
+                    <span class="btn-text">ส่งผลงาน</span>
+                    <div class="loader hidden"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="success-icon">✨</div>
+            <h2>ขอบคุณที่ส่งผลงาน!</h2>
+            <p>เราได้รับข้อมูลผลงาน Power BI ของท่านเรียบร้อยแล้ว</p>
+            <button onclick="window.location.reload()" class="btn-primary">ตกลง</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

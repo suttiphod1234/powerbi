@@ -7,6 +7,8 @@ function doPost(e) {
     
     if (data.type === 'survey') {
       return handleSurvey(data);
+    } else if (data.type === 'submission') {
+      return handleSubmission(data);
     } else {
       return handleQuiz(data);
     }
@@ -80,6 +82,26 @@ function handleSurvey(data) {
   ]);
 
   return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'type': 'survey' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function handleSubmission(data) {
+  var ss = SpreadsheetApp.openById('1cJeaGJp9roRo3OdLuORzb_nOZlHtWt3hC7i3SDej3Pk');
+  var sheet = ss.getSheetByName('ซีต(ผลงาน)');
+  
+  if (!sheet) {
+    sheet = ss.insertSheet('ซีต(ผลงาน)');
+    sheet.appendRow(['วันที่-เวลา', 'ชื่อ-นามสกุล', 'ตำแหน่งงาน', 'ลิงค์ผลงาน Power BI']);
+  }
+  
+  sheet.appendRow([
+    new Date(),
+    data.fullname,
+    data.position,
+    data.workLink
+  ]);
+
+  return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'type': 'submission' }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
